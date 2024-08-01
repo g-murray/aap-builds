@@ -8,3 +8,4 @@ https://gmurray-redhat.github.io/aap-builds/aap-operator-installation-Deploy-gui
 https://gmurray-redhat.github.io/aap-builds/aap-operator-installation-main-2024-08-01.html
 https://gmurray-redhat.github.io/aap-builds/titles-main-2024-08-01.html
 https://gmurray-redhat.github.io/aap-builds/titles-main-2024-08-01.html
+https://gmurray-redhat.github.io/aap-builds/titles-preview-test-2024-08-01.html

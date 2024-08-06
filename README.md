@@ -11,3 +11,4 @@ https://gmurray-redhat.github.io/aap-builds/titles-main-2024-08-01.html
 https://gmurray-redhat.github.io/aap-builds/titles-preview-test-2024-08-01.html
 * https://gmurray-redhat.github.io/aap-builds/aap-operator-installation-preview-test-2024-08-01.html
 * https://g-murray-redhat.github.io/aap-builds/aap-operator-installation-main-2024-08-06.html
+* https://g-murray.github.io/aap-builds/aap-operator-installation-main-2024-08-06.html

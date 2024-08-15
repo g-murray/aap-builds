@@ -14,3 +14,4 @@ https://gmurray-redhat.github.io/aap-builds/titles-preview-test-2024-08-01.html
 * https://g-murray.github.io/aap-builds/aap-operator-installation-main-2024-08-06.html
 * https://g-murray.github.io/aap-builds/aap-operator-installation-main-2024-08-06.html
 * https://g-murray.github.io/aap-builds/saas-aws-saas-intro-2024-08-15.html
+* https://g-murray.github.io/aap-builds/saas-aws-saas-intro-2024-08-15.html

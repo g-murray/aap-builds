@@ -16,3 +16,4 @@ https://gmurray-redhat.github.io/aap-builds/titles-preview-test-2024-08-01.html
 * https://g-murray.github.io/aap-builds/saas-aws-saas-intro-2024-08-15.html
 * https://g-murray.github.io/aap-builds/saas-aws-saas-intro-2024-08-15.html
 * https://g-murray.github.io/aap-builds/saas-aws-saas-intro-2024-08-15.html
+* https://g-murray.github.io/aap-builds/saas-aws-saas-set-up-2024-08-16.html

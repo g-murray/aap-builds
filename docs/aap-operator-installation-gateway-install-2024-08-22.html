@@ -1,0 +1,3509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<title>Installing on Openshift Container Platform</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article Role ARG Spec">
+<div id="header">
+<h1>Installing on Openshift Container Platform</h1>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Thank you for your interest in Red Hat Ansible Automation Platform. Ansible Automation Platform is a commercial offering that helps teams manage complex multi-tier deployments by adding control, knowledge, and delegation to Ansible-powered environments.</p>
+</div>
+<div class="paragraph">
+<p>This guide helps you to understand the installation, migration and upgrade requirements for deploying the Ansible Automation Platform Operator on OpenShift Container Platform.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="providing-feedback">Providing feedback on Red Hat documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you have a suggestion to improve this documentation, or find an error, you can contact technical support at <a href="https://access.redhat.com">https://access.redhat.com</a> to open a request.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="operator-install-planning">1. Planning your Red Hat Ansible Automation Platform operator installation on Red Hat OpenShift Container Platform</h2>
+<div class="sectionbody">
+<div class="paragraph _abstract">
+<p>Red Hat Ansible Automation Platform is supported on both Red Hat Enterprise Linux and Red Hat Openshift.</p>
+</div>
+<div class="paragraph">
+<p>OpenShift operators help install and automate day-2 operations of complex, distributed software on Red Hat OpenShift Container Platform. The Ansible Automation Platform Operator enables you to deploy and manage Ansible Automation Platform components on Red Hat OpenShift Container Platform.</p>
+</div>
+<div class="paragraph">
+<p>You can use this section to help plan your Red Hat Ansible Automation Platform installation on your Red Hat OpenShift Container Platform environment. Before installing, review the supported installation scenarios to determine which meets your requirements.</p>
+</div>
+<div class="sect2">
+<h3 id="con-about-operator_operator-install-planning">1.1. About Ansible Automation Platform Operator</h3>
+<div class="paragraph _abstract">
+<p>The Ansible Automation Platform Operator provides cloud-native, push-button deployment of new Ansible Automation Platform instances in your OpenShift environment.
+The Ansible Automation Platform Operator includes resource types to deploy and manage instances of automation controller and private automation hub.
+It also includes automation controller job resources for defining and launching jobs inside your automation controller deployments.</p>
+</div>
+<div class="paragraph">
+<p>Deploying Ansible Automation Platform instances with a Kubernetes native operator offers several advantages over launching instances from a playbook deployed on Red Hat OpenShift Container Platform, including upgrades and full lifecycle support for your Red Hat Ansible Automation Platform deployments.</p>
+</div>
+<div class="paragraph">
+<p>You can install the Ansible Automation Platform Operator from the Red Hat Operators catalog in OperatorHub.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref-operator-ocp-version_operator-install-planning">1.2. OpenShift Container Platform version compatibility</h3>
+<div class="paragraph _abstract">
+<p>The Ansible Automation Platform Operator to install Ansible Automation Platform 2.5 is available on OpenShift Container Platform 4.9 and later versions.</p>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p>See the <a href="https://access.redhat.com/support/policy/updates/ansible-automation-platform">Red Hat Ansible Automation Platform Life Cycle</a> for the most current compatibility details.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="con-ocp-supported-install_operator-install-planning">1.3. Supported installation scenarios for Red Hat OpenShift Container Platform</h3>
+<div class="paragraph">
+<p>You can use the OperatorHub on the Red Hat OpenShift Container Platform web console to install Ansible Automation Platform Operator.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can install Ansible Automation Platform Operator from the OpenShift Container Platform command-line interface (CLI), <code>oc</code>. See <a href="#installing-aap-operator-cli">Installing Ansible Automation Platform Operator from the OpenShift Container Platform CLI</a> for help with this.</p>
+</div>
+<div class="paragraph">
+<p>After you have installed Ansible Automation Platform Operator you must create an <strong>Ansible Automation Platform</strong> custom resource (CR). This enables you to manage Ansible Automation Platform components from a single unified interface known as the platform gateway. As of version 2.5, you must create an Ansible Automation Platform CR, even if you have an existing automation controller,  automation hub, or Event-Driven Ansible, components.</p>
+</div>
+<div class="paragraph">
+<p>If existing components have already been deployed, you must specify these components on the Ansible Automation Platform CR. You must create the custom resource in the same namespace as the existing components.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Supported scenarios</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Supported scenarios with existing components</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Ansible Automation Platform CR for blank slate install with automation controller, automation hub, and Event-Driven Ansible enabled</p>
+</li>
+<li>
+<p>Ansible Automation Platform CR with just automation controller enabled</p>
+</li>
+<li>
+<p>Ansible Automation Platform CR with just automation controller, automation hub enabled</p>
+</li>
+<li>
+<p>Ansible Automation Platform CR with just automation controller, Event-Driven Ansible enabled</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Ansible Automation Platform CR created in the same namespace as an existing automation controller CR with the automation controller name specified on the Ansible Automation Platform CR spec</p>
+</li>
+<li>
+<p>Same with automation controller and automation hub</p>
+</li>
+<li>
+<p>Same with automation controller, automation hub, and Event-Driven Ansible</p>
+</li>
+<li>
+<p>Same with automation controller and Event-Driven Ansible</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="con-operator-custom-resources_operator-install-planning">1.4. Custom resources</h3>
+<div class="paragraph">
+<p>You can define custom resources for each primary installation workflows.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="con-operator-additional-resources_operator-install-planning">1.5. Additional resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>See <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html/operators/understanding-operators#olm-understanding-operatorhub">Understanding OperatorHub</a> to learn more about OpenShift Container Platform OperatorHub.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="assembly-install-aap-operator">2. Installing the Red Hat Ansible Automation Platform operator on Red Hat OpenShift Container Platform</h2>
+<div class="sectionbody">
+<div class="ulist _abstract">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have installed the Red Hat Ansible Automation Platform catalog in OperatorHub.</p>
+</li>
+<li>
+<p>You have created a <code>StorageClass</code> object for your platform and a persistent volume claim (PVC) with <code>ReadWriteMany</code> access mode. See <a href="https://docs.openshift.com/container-platform/4.15/storage/dynamic-provisioning.html">Dynamic provisioning</a> for details.</p>
+</li>
+<li>
+<p>To run Red Hat OpenShift Container Platform clusters on Amazon Web Services (AWS) with <code>ReadWriteMany</code> access mode, you must add NFS or other storage.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For information about the AWS Elastic Block Store (EBS) or to use the <code>aws-ebs</code> storage class, see <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.10/html-single/storage/index#persistent-storage-aws">Persistent storage using AWS Elastic Block Store</a>.</p>
+</li>
+<li>
+<p>To use multi-attach <code>ReadWriteMany</code> access mode for AWS EBS, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html">Attaching a volume to multiple instances with Amazon EBS Multi-Attach</a>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div id="proc-install-aap-operator" class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Log in to Red Hat OpenShift Container Platform.</p>
+</li>
+<li>
+<p>Navigate to <span class="menuseq"><b class="menu">Operators</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">OperatorHub</b></span>.</p>
+</li>
+<li>
+<p>Search for Ansible Automation Platform and click <b class="button">Install</b>.</p>
+</li>
+<li>
+<p>Select an <strong>Update Channel</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>stable-2.x</strong>: installs a namespace-scoped operator, which limits deployments of automation hub and automation controller instances to the namespace the operator is installed in. This is suitable for most cases. The stable-2.x channel does not require administrator privileges and utilizes fewer resources because it only monitors a single namespace.</p>
+</li>
+<li>
+<p><strong>stable-2.x-cluster-scoped</strong>: deploys automation hub and automation controller across multiple namespaces in the cluster and requires administrator privileges for all namespaces in the cluster.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Select <strong>Installation Mode</strong>, <strong>Installed Namespace</strong>, and <strong>Approval Strategy</strong>.</p>
+</li>
+<li>
+<p>Click <b class="button">Install</b>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The installation process will begin. When installation is complete, a modal will appear notifying you that the Red Hat Ansible Automation Platform operator is installed in the specified namespace.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click <b class="button">View Operator</b> to view your newly installed Red Hat Ansible Automation Platform operator.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-aap-operator-cli">3. Installing Ansible Automation Platform Operator from the OpenShift Container Platform CLI</h2>
+<div class="sectionbody">
+<div class="paragraph _abstract">
+<p>Use these instructions to install the Ansible Automation Platform Operator on Red Hat OpenShift Container Platform from the OpenShift Container Platform command-line interface (CLI) using the <code class="command">oc</code> command.</p>
+</div>
+<div class="sect2">
+<h3 id="_prerequisites">3.1. Prerequisites</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Access to Red Hat OpenShift Container Platform using an account with operator installation permissions.</p>
+</li>
+<li>
+<p>The OpenShift Container Platform CLI <code class="command">oc</code> command is installed on your local system. Refer to <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html/cli_tools/openshift-cli-oc#installing-openshift-cli">Installing the OpenShift CLI</a> in the Red Hat OpenShift Container Platform product documentation for further information.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-install-cli-aap-operatorinstalling-aap-operator-cli">3.2. Subscribing a namespace to an operator using the OpenShift Container Platform CLI</h3>
+<div class="paragraph">
+<p>Use this procedure to subscribe a namespace to an operator.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a project for the operator.</p>
+<div class="listingblock">
+<div class="content">
+<pre>oc new-project ansible-automation-platform</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a file called <code class="filename">sub.yaml</code>.</p>
+</li>
+<li>
+<p>Add the following YAML code to the <code class="filename">sub.yaml</code> file.</p>
+<div class="listingblock">
+<div class="content">
+<pre>---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    openshift.io/cluster-monitoring: "true"
+  name: ansible-automation-platform
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: ansible-automation-platform-operator
+  namespace: ansible-automation-platform
+spec:
+  targetNamespaces:
+    - ansible-automation-platform
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: ansible-automation-platform
+  namespace: ansible-automation-platform
+spec:
+  channel: 'stable-2.5'
+  installPlanApproval: Automatic
+  name: ansible-automation-platform-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+---
+apiVersion: automationcontroller.ansible.com/v1beta1
+kind: AutomationController
+metadata:
+  name: example
+  namespace: ansible-automation-platform
+spec:
+  replicas: 1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This file creates a <code>Subscription</code> object called <code><em>ansible-automation-platform</em></code> that subscribes the <code>ansible-automation-platform</code> namespace to the <code>ansible-automation-platform-operator</code> operator.</p>
+</div>
+<div class="paragraph">
+<p>It then creates an <code>AutomationController</code> object called <code><em>example</em></code> in the <code>ansible-automation-platform</code> namespace.</p>
+</div>
+<div class="paragraph">
+<p>To change the automation controller name from <code><em>example</em></code>, edit the <em>name</em> field in the <code>kind: AutomationController</code> section of <code class="filename">sub.yaml</code> and replace <code><em>&lt;automation_controller_name&gt;</em></code> with the name you want to use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: automationcontroller.ansible.com/v1beta1
+kind: AutomationController
+metadata:
+  name: <em>&lt;automation_controller_name&gt;</em>
+  namespace: ansible-automation-platform</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the <code class="command"><strong>oc apply</strong></code> command to create the objects specified in the <code class="filename">sub.yaml</code> file:</p>
+<div class="listingblock">
+<div class="content">
+<pre>oc apply -f sub.yaml</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To verify that the namespace has been successfully subscribed to the <code>ansible-automation-platform-operator</code> operator, run the <code class="command"><strong>oc get subs</strong></code> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ oc get subs -n ansible-automation-platform</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For further information about subscribing namespaces to operators, see <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html/operators/user-tasks#olm-installing-operator-from-operatorhub-using-cli_olm-installing-operators-in-namespace">Installing from OperatorHub using the CLI</a> in the Red Hat OpenShift Container Platform <em>Operators</em> guide.</p>
+</div>
+<div class="paragraph">
+<p>You can use the OpenShift Container Platform CLI to fetch the web address and the password of the Automation controller that you created.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-cli-get-controller-pwdinstalling-aap-operator-cli">3.3. Fetching platform gateway login details from the OpenShift Container Platform CLI</h3>
+<div class="paragraph">
+<p>To login to the platform gateway, you need the web address and the password.</p>
+</div>
+<div class="sect3">
+<h4 id="_fetching_the_platform_gateway_web_address">3.3.1. Fetching the platform gateway web address</h4>
+<div class="paragraph">
+<p>A Red Hat OpenShift Container Platform route exposes a service at a host name, so that external clients can reach it by name.
+When you created the platform gateway instance, a route was created for it.
+The route inherits the name that you assigned to the platform gateway object in the YAML file.</p>
+</div>
+<div class="paragraph">
+<p>Use the following command to fetch the routes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc get routes -n <em>&lt;platform_namespace&gt;</em></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the following example, the <code><em>example</em></code> platform gateway is running in the <code><em>ansible-automation-platform</em></code> namespace.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ oc get routes -n ansible-automation-platform
+
+NAME      HOST/PORT                                              PATH   SERVICES          PORT   TERMINATION     WILDCARD
+example   example-ansible-automation-platform.apps-crc.testing          example-service   http   edge/Redirect   None</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The address for the platform gateway instance is <code>example-ansible-automation-platform.apps-crc.testing</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fetching_the_platform_gateway_password">3.3.2. Fetching the platform gateway password</h4>
+<div class="paragraph">
+<p>The YAML block for the platform gateway instance in <code class="filename">sub.yaml</code> assigns values to the <em>name</em> and <em>admin_user</em> keys.
+Use these values in the following command to fetch the password for the platform gateway instance.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc get secret/&lt;your instance name&gt;-&lt;admin_user&gt;-password -o yaml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The default value for <em>admin_user</em> is <code><em>admin</em></code>. Modify the command if you changed the admin username in <code class="filename">sub.yaml</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following example retrieves the password for a platform gateway object called <code><em>example</em></code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc get secret/example-admin-password -o yaml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The password for the platform gateway instance is listed in the <code>metadata</code> field in the output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ oc get secret/example-admin-password -o yaml
+
+apiVersion: v1
+data:
+  password: ODzLODzLODzLODzLODzLODzLODzLODzLODzLODzLODzL
+kind: Secret
+metadata:
+  labels:
+    app.kubernetes.io/component: aap
+    app.kubernetes.io/name: example
+    app.kubernetes.io/operator-version: ""
+    app.kubernetes.io/part-of: example
+  name: example-admin-password
+  namespace: ansible-automation-platform</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2 _additional-resources">
+<h3 id="_additional_resources">3.4. Additional resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>For more information on running operators on OpenShift Container Platform, navigate to the <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/">OpenShift Container Platform product documentation</a> and click the <em>Operators - Working with Operators in OpenShift Container Platform</em> guide.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configure-aap-operator_operator-platform-doc">4. Configuring the Red Hat Ansible Automation Platform Operator on Red Hat OpenShift Container Platform</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The platform gateway for Ansible Automation Platform enables you to manage the following Ansible Automation Platform components to form a single user interface:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Automation controller</p>
+</li>
+<li>
+<p>Automation hub</p>
+</li>
+<li>
+<p>Event-Driven Ansible</p>
+</li>
+<li>
+<p>Red Hat Ansible Lightspeed (This feature is disabled by default, you must opt in to use it.)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Before you can deploy the platform gateway you must have Ansible Automation Platform Operator installed in a namespace.
+If you have not installed Ansible Automation Platform Operator see <a href="#assembly-install-aap-operator">Installing the Red Hat Ansible Automation Platform operator on Red Hat OpenShift Container Platform</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Platform gateway is only available under Ansible Automation Platform Operator version 2.5. Every component deployed under Ansible Automation Platform Operator 2.5 will also default to version 2.5.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If you have the Ansible Automation Platform Operator and some or all of the Ansible Automation Platform components installed see <a href="#operator-deploy-central-config_configure-aap-operator">Deploying the platform gateway with existing Ansible Automation Platform components</a> for how to proceed.</p>
+</div>
+<div class="sect2">
+<h3 id="operator-link-components_configure-aap-operator">4.1. Linking your components to the platform gateway</h3>
+<div class="paragraph">
+<p>After installing the Ansible Automation Platform Operator in your namespace you can set up your <strong>Ansible Automation Platform</strong> instance.
+Then link all the platform components to a single user interface.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Go to your Ansible Automation Platform Operator and click <b class="button">Details</b>.</p>
+</li>
+<li>
+<p>On the <strong>Ansible Automation Platform</strong> tile click <b class="button">Create instance</b>.</p>
+</li>
+<li>
+<p>From the <strong>Create Ansible Automation Platform</strong> page enter a name for your instance in the <strong>Name</strong> field.</p>
+</li>
+<li>
+<p>Click <b class="button">YAML view</b> and paste the following:</p>
+<div class="listingblock">
+<div class="content">
+<pre>spec:
+  controller:
+    disabled: false
+
+  eda:
+    disabled: false
+
+  hub:
+    disabled: false
+    storage_type: file
+    file_storage_storage_class: nfs-local-rwx
+    file_storage_size: 10Gi</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Create</b>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Verification</div>
+<p>Go to your Ansible Automation Platform Operator deployment and click <b class="button">All instances</b> to verify if all instances deployed correctly.
+You should see the <strong>Ansible Automation Platform</strong> instance and the deployed <strong>AutomationController</strong>, <strong>EDA</strong>, and <strong>AutomationHub</strong> instances here.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively you can check by the command line, run: <code>oc get route</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="operator-access-aap_configure-aap-operator">4.2. Accessing the platform gateway</h3>
+<div class="paragraph">
+<p>You should use the <strong>Ansible Automation Platform</strong> instance as your default.
+This instance links the automation controller, automation hub, and Event-Driven Ansible deployments to a single interface.</p>
+</div>
+<div class="paragraph">
+<div class="title">Procedure</div>
+<p>To access your <strong>Ansible Automation Platform</strong> instance:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to <span class="menuseq"><b class="menu">Networking</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Routes</b></span></p>
+</li>
+<li>
+<p>Click the link under <strong>Location</strong> for <strong>Ansible Automation Platform</strong>.</p>
+</li>
+<li>
+<p>This redirects you to the Ansible Automation Platform login page. Enter "admin" as your username in the <strong>Username</strong> field.</p>
+</li>
+<li>
+<p>For the password you need to:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Go to to <span class="menuseq"><b class="menu">Workloads</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Secrets</b></span>.</p>
+</li>
+<li>
+<p>Click <b class="button">&lt;your instance name&gt;-admin-password</b> and copy the password.</p>
+</li>
+<li>
+<p>Paste the password into the <strong>Password</strong> field.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Login</b>.</p>
+</li>
+<li>
+<p>Apply your subscription:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click <b class="button">Subscription manifest</b> or <b class="button">Username/password</b>.</p>
+</li>
+<li>
+<p>Upload your manifest or enter your username and password.</p>
+</li>
+<li>
+<p>Select  your subscription from the <strong>Subscription</strong> list.</p>
+</li>
+<li>
+<p>Click <b class="button">Next</b>.<br>
+This redirects you to the <strong>Analytics</strong> page.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Next</b>.</p>
+</li>
+<li>
+<p>Select the <strong>I agree to the terms of the license agreement</strong> checkbox.</p>
+</li>
+<li>
+<p>Click <b class="button">Next</b>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You now have access to the platform gateway user interface.
+If you cannot access the Ansible Automation Platform see <a href="#operator-aap-troubleshooting_configure-aap-operator">Frequently asked questions on platform gateway</a> for help with troubleshooting and debugging.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="operator-deploy-central-config_configure-aap-operator">4.3. Deploying the platform gateway with existing Ansible Automation Platform components</h3>
+<div class="paragraph">
+<p>You can link any components of the Ansible Automation Platform, that you have already installed to a new <strong>Ansible Automation Platform</strong> instance.</p>
+</div>
+<div class="paragraph">
+<p>The following procedure simulates a scenario where you have automation controller as an existing component and want to add automation hub and Event-Driven Ansible.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Log in to Red Hat OpenShift Container Platform.</p>
+</li>
+<li>
+<p>Go to to <span class="menuseq"><b class="menu">Operators</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Installed Operators</b></span>.</p>
+</li>
+<li>
+<p>Click <b class="button">Subscriptions</b> and edit your <strong>Update channel</strong> to <strong>stable-2.5</strong>.</p>
+</li>
+<li>
+<p>Click <b class="button">Details</b> and on the <strong>Ansible Automation Platform</strong> tile click <b class="button">Create instance</b>.</p>
+</li>
+<li>
+<p>From the <strong>Create Ansible Automation Platform</strong> page enter a name for your instance in the <strong>Name</strong> field.</p>
+</li>
+<li>
+<p>Click <b class="button">YAML view</b> and copy in the following:</p>
+<div class="listingblock">
+<div class="content">
+<pre>    apiVersion: aap.ansible.com/v1alpha1
+        kind: AnsibleAutomationPlatform
+        metadata:
+          name: example-aap
+          namespace: aap
+        spec:
+          # Platform
+          image_pull_policy: IfNotPresent
+          # Components
+          controller:
+            disabled: false
+            name: existing-controller-name
+          eda:
+            disabled: false
+          hub:
+            disabled: false
+            ## uncomment if using file storage for Content pod
+            storage_type: file
+            file_storage_storage_class: your-rwx-storage-class
+            file_storage_size: 10Gi
+
+            ## uncomment if using S3 storage for Content pod
+            # storage_type: S3
+            # object_storage_s3_secret: example-galaxy-object-storage
+
+            ## uncomment if using Azure storage for Content pod
+            # storage_type: azure
+            # object_storage_azure_secret: azure-secret-name
+          lightspeed:
+            disabled: true</pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For new components, if you do not specify a name, a default name is generated.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Create</b>.</p>
+</li>
+<li>
+<p>To access your new instance, see <a href="#operator-access-aap_configure-aap-operator">Accessing the platform gateway</a>.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+If you have an existing controller with a managed Postgres pod, after creating the <strong>Ansible Automation Platform</strong> resource your automation controller instance will continue to use that original Postgres pod. If you were to do a fresh install you would have a single Postgres managed pod for all instances.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="operator-aap-troubleshooting_configure-aap-operator">4.4. Frequently asked questions on platform gateway</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">If I delete my Ansible Automation Platform deployment will I still have access to Automation Controller?</dt>
+<dd>
+<p>No, automation controller, automation hub, and Event-Driven Ansible are nested within the deployment and are also deleted.</p>
+</dd>
+<dt class="hdlist1">Something went wrong with my deployment but I&#8217;m not sure what, how can I find out?</dt>
+<dd>
+<p>You can follow along in the command line while the operator is reconciling, this can be helpful for debugging.
+Alternatively you can click into the deployment instance to see the status conditions being updated as the deployment goes on.</p>
+</dd>
+<dt class="hdlist1">Is it still possible to view individual component logs?</dt>
+<dd>
+<p>When troubleshooting you should examine the <strong>Ansible Automation Platform</strong> instance for the main logs and then each individual component (<strong>EDA</strong>, <strong>AutomationHub</strong>, <strong>AutomationController</strong>) for more specific information.</p>
+</dd>
+<dt class="hdlist1">Where can I view the condition of an instance?</dt>
+<dd>
+<p>To display status conditions click into the instance, and look under the <strong>Details</strong> or <strong>Events</strong> tab.
+Alternatively, to display the status conditions you can run the get command:
+<code>oc get automationcontroller &lt;instance-name&gt; -o jsonpath=Pipe "| jq"</code></p>
+</dd>
+<dt class="hdlist1">Can I track my migration in real time?</dt>
+<dd>
+<p>To help track the status of the migration or to understand why migration might have failed you can look at the migration logs as they are running. Use the logs command:
+<code>oc logs fresh-install-controller-migration-4.6.0-jwfm6 -f</code></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-controller-operator">5. Configuring automation controller on Red Hat OpenShift Container Platform web console</h2>
+<div class="sectionbody">
+<div class="paragraph _abstract">
+<p>You can use these instructions to configure the automation controller operator on Red Hat OpenShift Container Platform, specify custom resources, and deploy Ansible Automation Platform with an external database.</p>
+</div>
+<div class="paragraph">
+<p>Automation controller configuration can be done through the automation controller extra_settings or directly in the user interface after deployment. However, it is important to note that configurations made in extra_settings take precedence over settings made in the user interface.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When an instance of automation controller is removed, the associated PVCs are not automatically deleted. This can cause issues during migration if the new deployment has the same name as the previous one. Therefore, it is recommended that you manually remove old PVCs before deploying a new automation controller instance in the same namespace. See <a href="#proc-find-delete-PVCs_installing-contr-operator">Finding and deleting PVCs</a> for more information.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_prerequisites_2">5.1. Prerequisites</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>You have installed the Red Hat Ansible Automation Platform catalog in Operator Hub.</p>
+</li>
+<li>
+<p>For automation controller, a default StorageClass must be configured on the cluster for the operator to dynamically create needed PVCs. This is not necessary if an external PostgreSQL database is configured.</p>
+</li>
+<li>
+<p>For Hub a StorageClass that supports ReadWriteMany must be available on the cluster to dynamically created the PVC needed for the content, redis and api pods. If it is not the default StorageClass on the cluster, you can specify it when creating your AutomationHub object.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="proc-configuring-controller-image-pull-policy_installing-contr-operator">5.1.1. Configuring your controller image pull policy</h4>
+<div class="paragraph">
+<p>Use this procedure to configure the image pull policy on your automation controller.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Go to <span class="menuseq"><b class="menu">Operators</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Installed Operators</b></span>.</p>
+</li>
+<li>
+<p>Locate the <strong>Automation Controller</strong> tab.</p>
+</li>
+<li>
+<p>For new instances, click <b class="button">Create AutomationController</b>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For existing instances, you can edit the YAML view by clicking &#8942; and then <b class="button">Edit AutomationController</b>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">advanced Configuration</b>.
+Under <strong>Image Pull Policy</strong>, click on the radio button to select</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Always</strong></p>
+</li>
+<li>
+<p><strong>Never</strong></p>
+</li>
+<li>
+<p><strong>IfNotPresent</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>To display the option under <strong>Image Pull Secrets</strong>, click the arrow.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click <b class="button">+</b> beside <strong>Add Image Pull Secret</strong> and enter a value.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To display fields under the <strong>Web container resource requirements</strong> drop-down list, click the arrow.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Under <strong>Limits</strong>, and <strong>Requests</strong>, enter values for <strong>CPU cores</strong>, <strong>Memory</strong>, and <strong>Storage</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To display fields under the <strong>Task container resource requirements</strong> drop-down list, click the arrow.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Under <strong>Limits</strong>, and <strong>Requests</strong>, enter values for <strong>CPU cores</strong>, <strong>Memory</strong>, and <strong>Storage</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To display fields under the <strong>EE Control Plane container resource requirements</strong> drop-down list, click the arrow.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Under <strong>Limits</strong>, and <strong>Requests</strong>, enter values for <strong>CPU cores</strong>, <strong>Memory</strong>, and <strong>Storage</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To display fields under the <strong>PostgreSQL init container resource requirements (when using a managed service)</strong> drop-down list, click the arrow.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Under <strong>Limits</strong>, and <strong>Requests</strong>, enter values for <strong>CPU cores</strong>, <strong>Memory</strong>, and <strong>Storage</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To display fields under the <strong>Redis container resource requirements</strong> drop-down list, click the arrow.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Under <strong>Limits</strong>, and <strong>Requests</strong>, enter values for <strong>CPU cores</strong>, <strong>Memory</strong>, and <strong>Storage</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To display fields under the <strong>PostgreSQL container resource requirements (when using a managed instance)</strong>* drop-down list, click the arrow.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Under <strong>Limits</strong>, and <strong>Requests</strong>, enter values for <strong>CPU cores</strong>, <strong>Memory</strong>, and <strong>Storage</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To display the <strong>PostgreSQL container storage requirements (when using a managed instance)</strong> drop-down list, click the arrow.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Under <strong>Limits</strong>, and <strong>Requests</strong>, enter values for <strong>CPU cores</strong>, <strong>Memory</strong>, and <strong>Storage</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Under Replicas, enter the number of instance replicas.</p>
+</li>
+<li>
+<p>Under <strong>Remove used secrets on instance removal</strong>, select <strong>true</strong> or <strong>false</strong>. The default is false.</p>
+</li>
+<li>
+<p>Under <strong>Preload instance with data upon creation</strong>, select <strong>true</strong> or <strong>false</strong>. The default is true.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="proc-configuring-controller-route-options_installing-contr-operator">5.1.2. Configuring your automation controller operator route options</h4>
+<div class="paragraph">
+<p>The Red Hat Ansible Automation Platform operator installation form allows you to further configure your automation controller operator route options under <strong>Advanced configuration</strong>.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Go to <span class="menuseq"><b class="menu">Operators</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Installed Operators</b></span>.</p>
+</li>
+<li>
+<p>Locate the <strong>Automation Controller</strong> tab.</p>
+</li>
+<li>
+<p>For new instances, click <b class="button">Create AutomationController</b>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For existing instances, you can edit the YAML view by clicking &#8942; and then <b class="button">Edit AutomationController</b>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Advanced configuration</b>.</p>
+</li>
+<li>
+<p>Under <strong>Ingress type</strong>, click the drop-down menu and select <strong>Route</strong>.</p>
+</li>
+<li>
+<p>Under <strong>Route DNS host</strong>, enter a common host name that the route answers to.</p>
+</li>
+<li>
+<p>Under <strong>Route TLS termination mechanism</strong>, click the drop-down menu and select <strong>Edge</strong> or <strong>Passthrough</strong>. For most instances <strong>Edge</strong> should be selected.</p>
+</li>
+<li>
+<p>Under <strong>Route TLS credential secret</strong>, click the drop-down menu and select a secret from the list.</p>
+</li>
+<li>
+<p>Under <strong>Enable persistence for <em>/var/lib/projects</em> directory</strong> select either true or false by moving the slider.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="proc-controller-ingress-options_installing-contr-operator">5.1.3. Configuring the ingress type for your automation controller operator</h4>
+<div class="paragraph">
+<p>The Ansible Automation Platform Operator installation form allows you to further configure your automation controller operator ingress under <strong>Advanced configuration</strong>.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Go to <span class="menuseq"><b class="menu">Operators</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Installed Operators</b></span>.</p>
+</li>
+<li>
+<p>Locate the <strong>Automation Controller</strong> tab.</p>
+</li>
+<li>
+<p>For new instances, click <b class="button">Create AutomationController</b>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For existing instances, you can edit the YAML view by clicking &#8942; and then <b class="button">Edit AutomationController</b>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Advanced configuration</b>.</p>
+</li>
+<li>
+<p>Under <strong>Ingress type</strong>, click the drop-down menu and select <strong>Ingress</strong>.</p>
+</li>
+<li>
+<p>Under <strong>Ingress annotations</strong>, enter any annotations to add to the ingress.</p>
+</li>
+<li>
+<p>Under <strong>Ingress TLS secret</strong>, click the drop-down menu and select a secret from the list.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>After you have configured your automation controller operator, click <b class="button">Create</b> at the bottom of the form view. Red Hat OpenShift Container Platform will now create the pods. This may take a few minutes.</p>
+</div>
+<div class="paragraph">
+<p>You can view the progress by navigating to <span class="menuseq"><b class="menu">Workloads</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Pods</b></span> and locating the newly created instance.</p>
+</div>
+<div class="paragraph">
+<div class="title">Verification</div>
+<p>Verify that the following operator pods provided by the Ansible Automation Platform Operator installation from automation controller are running:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operator manager controllers</th>
+<th class="tableblock halign-left valign-top">automation controller</th>
+<th class="tableblock halign-left valign-top">automation hub</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The operator manager controllers for each of the 3 operators, include the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>automation-controller-operator-controller-manager</p>
+</li>
+<li>
+<p>automation-hub-operator-controller-manager</p>
+</li>
+<li>
+<p>resource-operator-controller-manager</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>After deploying automation controller, you will see the addition of these pods:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>controller</p>
+</li>
+<li>
+<p>controller-postgres</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>After deploying automation hub, you will see the addition of these pods:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>hub-api</p>
+</li>
+<li>
+<p>hub-content</p>
+</li>
+<li>
+<p>hub-postgres</p>
+</li>
+<li>
+<p>hub-redis</p>
+</li>
+<li>
+<p>hub-worker</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A missing pod can indicate the need for a pull secret. Pull secrets are required for protected or private image registries. See <a href="https://docs.openshift.com/container-platform/4.11/openshift_images/managing_images/using-image-pull-secrets.html">Using image pull secrets</a> for more information. You can diagnose this issue further by running <code>oc describe pod &lt;pod-name&gt;</code> to see if there is an ImagePullBackOff error on that pod.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-operator-external-db-controller">5.2. Configuring an external database for automation controller on Red Hat Ansible Automation Platform operator</h3>
+<div class="paragraph _abstract">
+<p>For users who prefer to deploy Ansible Automation Platform with an external database, they can do so by configuring a secret with instance credentials and connection information, then applying it to their cluster using the <code>oc create</code> command.</p>
+</div>
+<div class="paragraph">
+<p>By default, the Ansible Automation Platform Operator automatically creates and configures a managed PostgreSQL pod in the same namespace as your Ansible Automation Platform deployment. You can deploy Ansible Automation Platform with an external database instead of the managed PostgreSQL pod that the Ansible Automation Platform Operator automatically creates.</p>
+</div>
+<div class="paragraph">
+<p>Using an external database lets you share and reuse resources and manually manage backups, upgrades, and performance optimizations.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The same external database (PostgreSQL instance) can be used for both automation hub and automation controller as long as the database names are different. In other words, you can have multiple databases with different names inside a single PostgreSQL instance.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following section outlines the steps to configure an external database for your automation controller on a Ansible Automation Platform Operator.</p>
+</div>
+<div class="paragraph">
+<div class="title">Prerequisite</div>
+<p>The external database must be a PostgreSQL database that is the version supported by the current release of Ansible Automation Platform.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Ansible Automation Platform 2.5 supports PostgreSQL 15.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Procedure</div>
+<p>The external postgres instance credentials and connection information must be stored in a secret, which is then set on the automation controller spec.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a <code>postgres_configuration_secret</code> YAML file, following the template below:</p>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: v1
+kind: Secret
+metadata:
+  name: external-postgres-configuration
+  namespace: &lt;target_namespace&gt; <b class="conum">(1)</b>
+stringData:
+  host: "&lt;external_ip_or_url_resolvable_by_the_cluster&gt;" <b class="conum">(2)</b>
+  port: "&lt;external_port&gt;" <b class="conum">(3)</b>
+  database: "&lt;desired_database_name&gt;"
+  username: "&lt;username_to_connect_as&gt;"
+  password: "&lt;password_to_connect_with&gt;" <b class="conum">(4)</b>
+  sslmode: "prefer" <b class="conum">(5)</b>
+  type: "unmanaged"
+type: Opaque</pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Namespace to create the secret in. This should be the same namespace you want to deploy to.</p>
+</li>
+<li>
+<p>The resolvable hostname for your database node.</p>
+</li>
+<li>
+<p>External port defaults to <code>5432</code>.</p>
+</li>
+<li>
+<p>Value for variable <code>password</code> should not contain single or double quotes (', ") or backslashes (\) to avoid any issues during deployment, backup or restoration.</p>
+</li>
+<li>
+<p>The variable <code>sslmode</code> is valid for <code>external</code> databases only. The allowed values are: <code><strong>prefer</strong></code>, <code><strong>disable</strong></code>, <code><strong>allow</strong></code>, <code><strong>require</strong></code>, <code><strong>verify-ca</strong></code>, and <code><strong>verify-full</strong></code>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Apply <code>external-postgres-configuration-secret.yml</code> to your cluster using the <code>oc create</code> command.</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ oc create -f external-postgres-configuration-secret.yml</pre>
+</div>
+</div>
+</li>
+<li>
+<p>When creating your <code>AutomationController</code> custom resource object, specify the secret on your spec, following the example below:</p>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: automationcontroller.ansible.com/v1beta1
+kind: AutomationController
+metadata:
+  name: controller-dev
+spec:
+  postgres_configuration_secret: external-postgres-configuration</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-find-delete-PVCs_installing-contr-operator">5.3. Finding and deleting PVCs</h3>
+<div class="paragraph">
+<p>A persistent volume claim (PVC) is a storage volume used to store data that automation hub and automation controller applications use. These PVCs are independent from the applications and remain even when the application is deleted. If you are confident that you no longer need a PVC, or have backed it up elsewhere, you can manually delete them.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>List the existing PVCs in your deployment namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre>oc get pvc -n &lt;namespace&gt;</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Identify the PVC associated with your previous deployment by comparing the old deployment name and the PVC name.</p>
+</li>
+<li>
+<p>Delete the old PVC:</p>
+<div class="listingblock">
+<div class="content">
+<pre>oc delete pvc -n &lt;namespace&gt; &lt;pvc-name&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2 _additional-resources">
+<h3 id="_additional_resources_2">5.4. Additional resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>For more information on running operators on OpenShift Container Platform, navigate to the <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/">OpenShift Container Platform product documentation</a> and click the <em>Operators - Working with Operators in OpenShift Container Platform</em> guide.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-hub-operator">6. Configuring automation hub on Red Hat OpenShift Container Platform web console</h2>
+<div class="sectionbody">
+<div class="paragraph _abstract">
+<p>You can use these instructions to configure the automation hub operator on Red Hat OpenShift Container Platform, specify custom resources, and deploy Ansible Automation Platform with an external database.</p>
+</div>
+<div class="paragraph">
+<p>Automation hub configuration can be done through the automation hub pulp_settings or directly in the user interface after deployment. However, it is important to note that configurations made in pulp_settings take precedence over settings made in the user interface. Hub settings should always be set as lowercase on the Hub custom resource specification.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When an instance of automation hub is removed, the PVCs are not automatically deleted. This can cause issues during migration if the new deployment has the same name as the previous one. Therefore, it is recommended that you manually remove old PVCs before deploying a new automation hub instance in the same namespace. See <a href="#proc-find-delete-PVCs_installing-hub-operator">Finding and deleting PVCs</a> for more information.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_prerequisites_3">6.1. Prerequisites</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>You have installed the Ansible Automation Platform Operator in Operator Hub.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="con-storage-options-for-operator-installation-on-ocp_installing-hub-operator">6.1.1. Storage options for Ansible Automation Platform Operator installation on Red Hat OpenShift Container Platform</h4>
+<div class="paragraph">
+<p>Automation hub requires <code>ReadWriteMany</code> file-based storage, Azure Blob storage, or Amazon S3-compliant storage for operation so that multiple pods can access shared content, such as collections.</p>
+</div>
+<div class="paragraph">
+<p>The process for configuring object storage on the <code>AutomationHub</code> CR is similar for Amazon S3 and Azure Blob Storage.</p>
+</div>
+<div class="paragraph">
+<p>If you are using file-based storage and your installation scenario includes automation hub, ensure that the storage option for Ansible Automation Platform Operator is set to <code>ReadWriteMany</code>.
+<code>ReadWriteMany</code> is the default storage option.</p>
+</div>
+<div class="paragraph">
+<p>In addition, OpenShift Data Foundation provides a <code>ReadWriteMany</code> or S3-compliant implementation. Also, you can set up NFS storage configuration to support <code>ReadWriteMany</code>. This, however, introduces the NFS server as a potential, single point of failure.</p>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.openshift.com/container-platform/4.15/storage/persistent_storage/persistent-storage-nfs.html">Persistent storage using NFS</a> in the OpenShift Container Platform <em>Storage</em> guide</p>
+</li>
+<li>
+<p>IBM&#8217;s <a href="https://www.ibm.com/support/pages/how-do-i-create-storage-class-nfs-dynamic-storage-provisioning-openshift-environment">How do I create a storage class for NFS dynamic storage provisioning in an OpenShift environment?</a></p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="proc-provision-ocp-storage-with-readwritemany_installing-hub-operator">Provisioning OCP storage with <code>ReadWriteMany</code> access mode</h5>
+<div class="paragraph">
+<p>To ensure successful installation of Ansible Automation Platform Operator, you must provision your storage type for automation hub initially to <code>ReadWriteMany</code> access mode.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Go to <span class="menuseq"><b class="menu">Storage</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">PersistentVolume</b></span>.</p>
+</li>
+<li>
+<p>Click btn: Create PersistentVolume.</p>
+</li>
+<li>
+<p>In the first step, update the <code>accessModes</code> from the default <code>ReadWriteOnce</code> to <code>ReadWriteMany</code>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>See <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.10/html-single/storage/index#persistent-storage-nfs-provisioning_persistent-storage-nfs">Provisioning</a> to update the access mode. for a detailed overview.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Complete the additional steps in this section to create the persistent volume claim (PVC).</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="provision-ocp-storage-amazon-s3_installing-hub-operator">Configuring object storage on Amazon S3</h5>
+<div class="paragraph">
+<p>Red Hat supports Amazon Simple Storage Service (S3) for automation hub.
+You can configure it when deploying the <code>AutomationHub</code> custom resource (CR), or you can configure it for an existing instance.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Create an Amazon S3 bucket to store the objects.</p>
+</li>
+<li>
+<p>Note the name of the S3 bucket.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a Kubernetes secret containing the AWS credentials and connection details, and the name of your Amazon S3 bucket.
+The following example creates a secret called <code>test-s3</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">$ oc -n $HUB_NAMESPACE apply -f- &lt;&lt;EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: 'test-s3'
+stringData:
+  s3-access-key-id: $S3_ACCESS_KEY_ID
+  s3-secret-access-key: $S3_SECRET_ACCESS_KEY
+  s3-bucket-name: $S3_BUCKET_NAME
+  s3-region: $S3_REGION
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the secret to the automation hub custom resource (CR) <code>spec</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">spec:
+  object_storage_s3_secret: test-s3</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If you are applying this secret to an existing instance, restart the API pods for the change to take effect.
+<code>&lt;hub-name&gt;</code> is the name of your hub instance.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ oc -n $HUB_NAMESPACE delete pod -l app.kubernetes.io/name=&lt;hub-name&gt;-api</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="provision-ocp-storage-azure-blob_installing-hub-operator">Configuring object storage on Azure Blob</h5>
+<div class="paragraph">
+<p>Red Hat supports Azure Blob Storage for automation hub.
+You can configure it when deploying the <code>AutomationHub</code> custom resource (CR), or you can configure it for an existing instance.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Create an Azure Storage blob container to store the objects.</p>
+</li>
+<li>
+<p>Note the name of the blob container.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a Kubernetes secret containing the credentials and connection details for your Azure account, and the name of your Azure Storage blob container.
+The following example creates a secret called <code>test-azure</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">$ oc -n $HUB_NAMESPACE apply -f- &lt;&lt;EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: 'test-azure'
+stringData:
+  azure-account-name: $AZURE_ACCOUNT_NAME
+  azure-account-key: $AZURE_ACCOUNT_KEY
+  azure-container: $AZURE_CONTAINER
+  azure-container-path: $AZURE_CONTAINER_PATH
+  azure-connection-string: $AZURE_CONNECTION_STRING
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the secret to the automation hub custom resource (CR) <code>spec</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">spec:
+  object_storage_azure_secret: test-azure</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If you are applying this secret to an existing instance, restart the API pods for the change to take effect.
+<code>&lt;hub-name&gt;</code> is the name of your hub instance.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ oc -n $HUB_NAMESPACE delete pod -l app.kubernetes.io/name=&lt;hub-name&gt;-api</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="proc-hub-route-options_installing-hub-operator">6.1.2. Configure your automation hub operator route options</h4>
+<div class="paragraph">
+<p>The Red Hat Ansible Automation Platform operator installation form allows you to further configure your automation hub operator route options under <strong>Advanced configuration</strong>.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Go to <span class="menuseq"><b class="menu">Operators</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Installed Operators</b></span>.</p>
+</li>
+<li>
+<p>Locate the <strong>Automation Hub</strong> tab.</p>
+</li>
+<li>
+<p>For new instances, click <b class="button">Create AutomationHub</b>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For existing instances, you can edit the YAML view by clicking &#8942; and then <b class="button">Edit AutomationHub</b>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Advanced configuration</b>.</p>
+</li>
+<li>
+<p>Under <strong>Ingress type</strong>, click the drop-down menu and select <strong>Route</strong>.</p>
+</li>
+<li>
+<p>Under <strong>Route DNS host</strong>, enter a common host name that the route answers to.</p>
+</li>
+<li>
+<p>Under <strong>Route TLS termination mechanism</strong>, click the drop-down menu and select <strong>Edge</strong> or <strong>Passthrough</strong>.</p>
+</li>
+<li>
+<p>Under <strong>Route TLS credential secret</strong>, click the drop-down menu and select a secret from the list.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="proc-hub-ingress-options_installing-hub-operator">6.1.3. Configuring the ingress type for your automation hub operator</h4>
+<div class="paragraph">
+<p>The Ansible Automation Platform Operator installation form allows you to further configure your automation hub operator ingress under <strong>Advanced configuration</strong>.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Go to <span class="menuseq"><b class="menu">Operators</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Installed Operators</b></span>.</p>
+</li>
+<li>
+<p>Locate the <strong>Automation Hub</strong> tab.</p>
+</li>
+<li>
+<p>For new instances, click <b class="button">Create AutomationHub</b>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For existing instances, you can edit the YAML view by clicking &#8942; and then <b class="button">Edit AutomationHub</b>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Advanced Configuration</b>.</p>
+</li>
+<li>
+<p>Under <strong>Ingress type</strong>, click the drop-down menu and select <strong>Ingress</strong>.</p>
+</li>
+<li>
+<p>Under <strong>Ingress annotations</strong>, enter any annotations to add to the ingress.</p>
+</li>
+<li>
+<p>Under <strong>Ingress TLS secret</strong>, click the drop-down menu and select a secret from the list.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>After you have configured your automation hub operator, click <b class="button">Create</b> at the bottom of the form view. Red Hat OpenShift Container Platform will now create the pods. This may take a few minutes.</p>
+</div>
+<div class="paragraph">
+<p>You can view the progress by navigating to <span class="menuseq"><b class="menu">Workloads</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Pods</b></span> and locating the newly created instance.</p>
+</div>
+<div class="paragraph">
+<div class="title">Verification</div>
+<p>Verify that the following operator pods provided by the Ansible Automation Platform Operator installation from automation hub are running:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operator manager controllers</th>
+<th class="tableblock halign-left valign-top">automation controller</th>
+<th class="tableblock halign-left valign-top">automation hub</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The operator manager controllers for each of the 3 operators, include the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>automation-controller-operator-controller-manager</p>
+</li>
+<li>
+<p>automation-hub-operator-controller-manager</p>
+</li>
+<li>
+<p>resource-operator-controller-manager</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>After deploying automation controller, you will see the addition of these pods:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>controller</p>
+</li>
+<li>
+<p>controller-postgres</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>After deploying automation hub, you will see the addition of these pods:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>hub-api</p>
+</li>
+<li>
+<p>hub-content</p>
+</li>
+<li>
+<p>hub-postgres</p>
+</li>
+<li>
+<p>hub-redis</p>
+</li>
+<li>
+<p>hub-worker</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A missing pod can indicate the need for a pull secret. Pull secrets are required for protected or private image registries. See <a href="https://docs.openshift.com/container-platform/4.11/openshift_images/managing_images/using-image-pull-secrets.html">Using image pull secrets</a> for more information. You can diagnose this issue further by running <code>oc describe pod &lt;pod-name&gt;</code> to see if there is an ImagePullBackOff error on that pod.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="config-ldap-hub-ocp_installing-hub-operator">6.2. Configuring LDAP authentication for Ansible automation hub on OpenShift Container Platform</h3>
+<div class="paragraph">
+<p>Configure LDAP authentication settings for Ansible Automation Platform on OpenShift Container Platform in the spec section of your Hub instance configuration file.</p>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Use the following example to configure LDAP in your automation hub instance. For any blank fields, enter <code>``</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre>spec:
+    pulp_settings:
+      auth_ldap_user_attr_map:
+        email: "mail"
+        first_name: "givenName"
+        last_name: "sn"
+      auth_ldap_group_search_base_dn: 'cn=groups,cn=accounts,dc=example,dc=com'
+      auth_ldap_bind_dn: ' '
+      auth_ldap_bind_password: ' '
+      auth_ldap_group_search_filter: (objectClass=posixGroup)
+      auth_ldap_user_search_scope: SUBTREE
+      auth_ldap_server_uri: 'ldap://ldapserver:389'
+      authentication_backend_preset: ldap
+      auth_ldap_mirror_groups: 'True'
+      auth_ldap_user_search_base_dn: 'cn=users,cn=accounts,dc=example,dc=com'
+      auth_ldap_bind_password: 'ldappassword'
+      auth_ldap_user_search_filter: (uid=%(user)s)
+      auth_ldap_group_search_scope: SUBTREE
+      auth_ldap_user_flags_by_group: '@json {"is_superuser": "cn=tower-admin,cn=groups,cn=accounts,dc=example,dc=com"}'</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Do not leave any fields empty. For fields with no variable, enter <code>``</code> to indicate a default value.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-access-hub-operator-ui_installing-hub-operator">6.3. Finding the automation hub route</h3>
+<div class="paragraph">
+<p>You can access the automation hub through the platform gateway or through the following procedure.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to <span class="menuseq"><b class="menu">Networking</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Routes</b></span>.</p>
+</li>
+<li>
+<p>Under <strong>Location</strong>, click on the URL for your automation hub instance.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The automation hub user interface launches where you can sign in with the administrator credentials specified during the operator configuration process.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you did not specify an administrator password during configuration, one was automatically created for you. To locate this password, go to your project, select <span class="menuseq"><b class="menu">Workloads</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Secrets</b></span> and open controller-admin-password. From there you can copy the password and paste it into the Automation hub password field.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-operator-external-db-hub">6.4. Configuring an external database for automation hub on Ansible Automation Platform Operator</h3>
+<div class="paragraph _abstract">
+<p>For users who prefer to deploy Ansible Automation Platform with an external database, they can do so by configuring a secret with instance credentials and connection information, then applying it to their cluster using the <code>oc create</code> command.</p>
+</div>
+<div class="paragraph">
+<p>By default, the Ansible Automation Platform Operator automatically creates and configures a managed PostgreSQL pod in the same namespace as your Ansible Automation Platform deployment.</p>
+</div>
+<div class="paragraph">
+<p>You can choose to use an external database instead if you prefer to use a dedicated node to ensure dedicated resources or to manually manage backups, upgrades, or performance tweaks.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The same external database (PostgreSQL instance) can be used for both automation hub and automation controller as long as the database names are different. In other words, you can have multiple databases with different names inside a single PostgreSQL instance.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following section outlines the steps to configure an external database for your automation hub on a Ansible Automation Platform Operator.</p>
+</div>
+<div class="paragraph">
+<div class="title">Prerequisite</div>
+<p>The external database must be a PostgreSQL database that is the version supported by the current release of Ansible Automation Platform.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Ansible Automation Platform 2.5 supports PostgreSQL 15.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Procedure</div>
+<p>The external postgres instance credentials and connection information will need to be stored in a secret, which will then be set on the automation hub spec.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a <code>postgres_configuration_secret</code> YAML file, following the template below:</p>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: v1
+kind: Secret
+metadata:
+  name: external-postgres-configuration
+  namespace: &lt;target_namespace&gt; <b class="conum">(1)</b>
+stringData:
+  host: "&lt;external_ip_or_url_resolvable_by_the_cluster&gt;" <b class="conum">(2)</b>
+  port: "&lt;external_port&gt;" <b class="conum">(3)</b>
+  database: "&lt;desired_database_name&gt;"
+  username: "&lt;username_to_connect_as&gt;"
+  password: "&lt;password_to_connect_with&gt;" <b class="conum">(4)</b>
+  sslmode: "prefer" <b class="conum">(5)</b>
+  type: "unmanaged"
+type: Opaque</pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Namespace to create the secret in. This should be the same namespace you want to deploy to.</p>
+</li>
+<li>
+<p>The resolvable hostname for your database node.</p>
+</li>
+<li>
+<p>External port defaults to <code>5432</code>.</p>
+</li>
+<li>
+<p>Value for variable <code>password</code> should not contain single or double quotes (', ") or backslashes (\) to avoid any issues during deployment, backup or restoration.</p>
+</li>
+<li>
+<p>The variable <code>sslmode</code> is valid for <code>external</code> databases only. The allowed values are: <code><strong>prefer</strong></code>, <code><strong>disable</strong></code>, <code><strong>allow</strong></code>, <code><strong>require</strong></code>, <code><strong>verify-ca</strong></code>, and <code><strong>verify-full</strong></code>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Apply <code>external-postgres-configuration-secret.yml</code> to your cluster using the <code>oc create</code> command.</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ oc create -f external-postgres-configuration-secret.yml</pre>
+</div>
+</div>
+</li>
+<li>
+<p>When creating your <code>AutomationHub</code> custom resource object, specify the secret on your spec, following the example below:</p>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: automationhub.ansible.com/v1beta1
+kind: AutomationHub
+metadata:
+  name: hub-dev
+spec:
+  postgres_configuration_secret: external-postgres-configuration</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="proc-enable-hstore-extension">6.4.1. Enabling the hstore extension for the automation hub PostgreSQL database</h4>
+<div class="paragraph">
+<p>Added in Ansible Automation Platform 2.5, the database migration script uses <code>hstore</code> fields to store information, therefore the <code>hstore</code> extension to the automation hub PostgreSQL database must be enabled.</p>
+</div>
+<div class="paragraph">
+<p>This process is automatic when using the Ansible Automation Platform installer and a managed PostgreSQL server.</p>
+</div>
+<div class="paragraph">
+<p>If the PostgreSQL database is external, you must enable the <code>hstore</code> extension to the automation hub PostreSQL database manually before automation hub installation.</p>
+</div>
+<div class="paragraph">
+<p>If the <code>hstore</code> extension is not enabled before automation hub installation, a failure is raised during database migration.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Check if the extension is available on the PostgreSQL server (automation hub database).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">$ psql -d &lt;automation hub database&gt; -c "SELECT * FROM pg_available_extensions WHERE name='hstore'"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where the default value for <code>&lt;automation hub database&gt;</code> is <code>automationhub</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example output with <code>hstore</code> available</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">name  | default_version | installed_version |comment
+------+-----------------+-------------------+---------------------------------------------------
+ hstore | 1.7           |                   | data type for storing sets of (key, value) pairs
+(1 row)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Example output with <code>hstore</code> not available</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap"> name | default_version | installed_version | comment
+------+-----------------+-------------------+---------
+(0 rows)</pre>
+</div>
+</div>
+</li>
+<li>
+<p>On a RHEL based server, the <code>hstore</code> extension is included in the <code>postgresql-contrib</code> RPM package, which is not installed automatically when installing the PostgreSQL server RPM package.</p>
+<div class="paragraph">
+<p>To install the RPM package, use the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">dnf install postgresql-contrib</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the <code>hstore</code> PostgreSQL extension on the automation hub database with the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">$ psql -d &lt;automation hub database&gt; -c "CREATE EXTENSION hstore;"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output of which is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">CREATE EXTENSION</pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the following output, the <code>installed_version</code> field contains the <code>hstore</code> extension used, indicating that <code>hstore</code> is enabled.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">name | default_version | installed_version | comment
+-----+-----------------+-------------------+------------------------------------------------------
+hstore  |     1.7      |       1.7         | data type for storing sets of (key, value) pairs
+(1 row)</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-find-delete-PVCs_installing-hub-operator">6.5. Finding and deleting PVCs</h3>
+<div class="paragraph">
+<p>A persistent volume claim (PVC) is a storage volume used to store data that automation hub and automation controller applications use. These PVCs are independent from the applications and remain even when the application is deleted. If you are confident that you no longer need a PVC, or have backed it up elsewhere, you can manually delete them.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>List the existing PVCs in your deployment namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre>oc get pvc -n &lt;namespace&gt;</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Identify the PVC associated with your previous deployment by comparing the old deployment name and the PVC name.</p>
+</li>
+<li>
+<p>Delete the old PVC:</p>
+<div class="listingblock">
+<div class="content">
+<pre>oc delete pvc -n &lt;namespace&gt; &lt;pvc-name&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ocp-additional-configs_installing-hub-operator">6.6. Additional configurations</h3>
+<div class="paragraph _abstract">
+<p>A collection download count can help you understand collection usage. To add a collection download count to automation hub, set the following configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>spec:
+  pulp_settings:
+    ansible_collect_download_count: true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When <code>ansible_collect_download_count</code> is enabled, automation hub will display a download count by the collection.</p>
+</div>
+</div>
+<div class="sect2 _additional-resources">
+<h3 id="_additional_resources_3">6.7. Additional resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>For more information on running operators on OpenShift Container Platform, navigate to the <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/">OpenShift Container Platform product documentation</a> and click the <em>Operators - Working with Operators in OpenShift Container Platform</em> guide.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="using-rhsso-operator-with-automation-hub">7. Using Red Hat Single Sign-On Operator with automation hub</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Private automation hub uses Red Hat Single Sign-On for authentication.</p>
+</div>
+<div class="paragraph">
+<p>The Red Hat Single Sign-On Operator creates and manages resources.
+Use this operator to create custom resources to automate Red Hat Single Sign-On administration in OpenShift.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When installing Ansible Automation Platform on <em>Virtual Machines</em> (VMs) the installer can automatically install and configure Red Hat Single Sign-On for use with private automation hub.</p>
+</li>
+<li>
+<p>When installing Ansible Automation Platform on Red Hat OpenShift Container Platform you must install Single Sign-On separately.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This chapter describes the process to configure Red Hat Single Sign-On and integrate it with private automation hub when Ansible Automation Platform is installed on OpenShift Container Platform.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have access to Red Hat OpenShift Container Platform using an account with operator installation permissions.</p>
+</li>
+<li>
+<p>You have installed the catalog containing the Red Hat Ansible Automation Platform operators.</p>
+</li>
+<li>
+<p>You have installed the Red Hat Single Sign-On Operator.
+To install the Red Hat Single Sign-On Operator, follow the procedure in <a href="https://docs.redhat.com/en/documentation/red_hat_single_sign-on/7.6/html/server_installation_and_configuration_guide/operator#doc-wrapper">Installing Red Hat Single Sign-On using a custom resource</a> in the Red Hat Single Sign-On documentation.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="proc-create-keycloak-instance_using-a-rhsso-operator">7.1. Creating a Keycloak instance</h3>
+<div class="paragraph">
+<p>After you install the Red Hat Single Sign-On Operator, you can create a Keycloak instance for use with Ansible Automation Platform.</p>
+</div>
+<div class="paragraph">
+<p>From here you provide an external Postgres or one will be created for you.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to <span class="menuseq"><b class="menu">Operator</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Installed Operators</b></span>.</p>
+</li>
+<li>
+<p>Select the <code>rh-sso</code> project.</p>
+</li>
+<li>
+<p>Select the <strong>Red Hat Single Sign-On Operator</strong>.</p>
+</li>
+<li>
+<p>On the Red Hat Single Sign-On Operator details page select <b class="button">Keycloak</b>.</p>
+</li>
+<li>
+<p>Click <b class="button">Create instance</b>.</p>
+</li>
+<li>
+<p>Click <b class="button">YAML view</b>.</p>
+<div class="paragraph">
+<p>The default Keycloak custom resource is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">apiVersion: keycloak.org/v1alpha1
+kind: Keycloak
+metadata:
+  name: example-keycloak
+  labels:
+	app: sso
+  namespace: aap
+spec:
+  externalAccess:
+	enabled: true
+  instances: 1</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Create</b>.</p>
+</li>
+<li>
+<p>When deployment is complete, you can use this credential to login to the administrative console.</p>
+</li>
+<li>
+<p>You can find the credentials for the administrator in the <code>credential-&lt;custom-resource&gt;</code> (example keycloak) secret in the namespace.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-create-keycloak-realm_using-a-rhsso-operator">7.2. Creating a Keycloak realm for Ansible Automation Platform</h3>
+<div class="paragraph">
+<p>Create a realm to manage a set of users, credentials, roles, and groups.
+A user belongs to and logs into a realm.
+Realms are isolated from one another and can only manage and authenticate the users that they control.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to <span class="menuseq"><b class="menu">Operator</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Installed Operators</b></span>.</p>
+</li>
+<li>
+<p>Select the <strong>Red Hat Single Sign-On Operator</strong> project.</p>
+</li>
+<li>
+<p>Select the <strong>Keycloak Realm</strong> tab and click <b class="button">Create Keycloak Realm</b>.</p>
+</li>
+<li>
+<p>On the <strong>Keycloak Realm</strong> form, select <b class="button">YAML view</b>.
+Edit the YAML file as follows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">kind: KeycloakRealm
+apiVersion: keycloak.org/v1alpha1
+metadata:
+  name: ansible-automation-platform-keycloakrealm
+  namespace: rh-sso
+  labels:
+    app: sso
+    realm: ansible-automation-platform
+spec:
+  realm:
+    id: ansible-automation-platform
+    realm: ansible-automation-platform
+    enabled: true
+    displayName: Ansible Automation Platform
+  instanceSelector:
+    matchLabels:
+      app: sso</pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Field</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Description</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>metadata.name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set a unique value in metadata for the name of the configuration resource (CR).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>metadata.namespace</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set a unique value in metadata for the name of the configuration resource (CR).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>metadata.labels.app</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set labels to a unique value. This is used when creating the client CR.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>metadata.labels.realm</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set labels to a unique value. This is used when creating the client CR.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.realm.id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set the realm name and id. These must be the same.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.realm.realm</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set the realm name and id. These must be the same.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec.realm.displayname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set the name to display.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Click <b class="button">Create</b> and wait for the process to complete.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-create-keycloak-client_using-a-rhsso-operator">7.3. Creating a Keycloak client</h3>
+<div class="paragraph">
+<p>Keycloak clients authenticate hub users with Red Hat Single Sign-On.
+When a user authenticates the request goes through the Keycloak client.
+When Single Sign-On validates or issues the <code>OAuth</code> token, the client provides the response to automation hub and the user can log in.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to <span class="menuseq"><b class="menu">Operator</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Installed Operators</b></span>.</p>
+</li>
+<li>
+<p>Select the Red Hat Single Sign-On Operator project.</p>
+</li>
+<li>
+<p>Select the <strong>Keycloak Client</strong> tab and click <b class="button">Create Keycloak Client</b>.</p>
+</li>
+<li>
+<p>On the Keycloak Realm form, select <b class="button">YAML view</b>.</p>
+</li>
+<li>
+<p>Replace the default YAML file with the following:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">kind: KeycloakClient
+apiVersion: keycloak.org/v1alpha1
+metadata:
+  name: automation-hub-client-secret
+  labels:
+    app: sso
+    realm: ansible-automation-platform
+  namespace: rh-sso
+spec:
+  realmSelector:
+    matchLabels:
+      app: sso
+      realm: ansible-automation-platform
+  client:
+    name: Automation Hub
+    clientId: automation-hub
+    secret: &lt;client-secret&gt;                        <b class="conum">(1)</b>
+    clientAuthenticatorType: client-secret
+    description: Client for automation hub
+    attributes:
+      user.info.response.signature.alg: RS256
+      request.object.signature.alg: RS256
+    directAccessGrantsEnabled: true
+    publicClient: true
+    protocol: openid-connect
+    standardFlowEnabled: true
+    protocolMappers:
+      - config:
+          access.token.claim: "true"
+          claim.name: "family_name"
+          id.token.claim: "true"
+          jsonType.label: String
+          user.attribute: lastName
+          userinfo.token.claim: "true"
+        consentRequired: false
+        name: family name
+        protocol: openid-connect
+        protocolMapper: oidc-usermodel-property-mapper
+      - config:
+          userinfo.token.claim: "true"
+          user.attribute: email
+          id.token.claim: "true"
+          access.token.claim: "true"
+          claim.name: email
+          jsonType.label: String
+        name: email
+        protocol: openid-connect
+        protocolMapper: oidc-usermodel-property-mapper
+        consentRequired: false
+      - config:
+          multivalued: "true"
+          access.token.claim: "true"
+          claim.name: "resource_access.${client_id}.roles"
+          jsonType.label: String
+        name: client roles
+        protocol: openid-connect
+        protocolMapper: oidc-usermodel-client-role-mapper
+        consentRequired: false
+      - config:
+          userinfo.token.claim: "true"
+          user.attribute: firstName
+          id.token.claim: "true"
+          access.token.claim: "true"
+          claim.name: given_name
+          jsonType.label: String
+        name: given name
+        protocol: openid-connect
+        protocolMapper: oidc-usermodel-property-mapper
+        consentRequired: false
+      - config:
+          id.token.claim: "true"
+          access.token.claim: "true"
+          userinfo.token.claim: "true"
+        name: full name
+        protocol: openid-connect
+        protocolMapper: oidc-full-name-mapper
+        consentRequired: false
+      - config:
+          userinfo.token.claim: "true"
+          user.attribute: username
+          id.token.claim: "true"
+          access.token.claim: "true"
+          claim.name: preferred_username
+          jsonType.label: String
+        name: &lt;username&gt;
+        protocol: openid-connect
+        protocolMapper: oidc-usermodel-property-mapper
+        consentRequired: false
+      - config:
+          access.token.claim: "true"
+          claim.name: "group"
+          full.path: "true"
+          id.token.claim: "true"
+          userinfo.token.claim: "true"
+        consentRequired: false
+        name: group
+        protocol: openid-connect
+        protocolMapper: oidc-group-membership-mapper
+      - config:
+          multivalued: 'true'
+          id.token.claim: 'true'
+          access.token.claim: 'true'
+          userinfo.token.claim: 'true'
+          usermodel.clientRoleMapping.clientId:  'automation-hub'
+          claim.name: client_roles
+          jsonType.label: String
+        name: client_roles
+        protocolMapper: oidc-usermodel-client-role-mapper
+        protocol: openid-connect
+      - config:
+          id.token.claim: "true"
+          access.token.claim: "true"
+          included.client.audience: 'automation-hub'
+        protocol: openid-connect
+        name: audience mapper
+        protocolMapper: oidc-audience-mapper
+  roles:
+    - name: "hubadmin"
+      description: "An administrator role for automation hub"</pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Replace this with a unique value.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Create</b> and wait for the process to complete.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>After you deploy automation hub, you must update the client with the “Valid Redirect URIs” and “Web Origins” as described in <a href="#proc-update-rhsso-client_using-a-rhsso-operator">Updating the Red Hat Single Sign-On client</a>
+Additionally, the client comes pre-configured with token mappers, however, if your authentication provider does not provide group data to Red Hat SSO, then the group mapping must be updated to reflect how that information is passed.
+This is commonly by user attribute.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-create-a-user_using-a-rhsso-operator">7.4. Creating a Keycloak user</h3>
+<div class="paragraph">
+<p>This procedure creates a Keycloak user, with the <code>hubadmin</code> role, that can log in to automation hub with Super Administration privileges.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to <span class="menuseq"><b class="menu">Operator</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Installed Operators</b></span>.</p>
+</li>
+<li>
+<p>Select the Red Hat Single Sign-On Operator project.</p>
+</li>
+<li>
+<p>Select the <strong>Keycloak Realm</strong> tab and click <b class="button">Create Keycloak User</b>.</p>
+</li>
+<li>
+<p>On the <strong>Keycloak User</strong> form, select <b class="button">YAML view</b>.</p>
+</li>
+<li>
+<p>Replace the default YAML file with the following:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">apiVersion: keycloak.org/v1alpha1
+kind: KeycloakUser
+metadata:
+  name: hubadmin-user
+  labels:
+    app: sso
+    realm: ansible-automation-platform
+  namespace: rh-sso
+spec:
+  realmSelector:
+    matchLabels:
+      app: sso
+      realm: ansible-automation-platform
+  user:
+    username: hub_admin
+    firstName: Hub
+    lastName: Admin
+    email: hub_admin@example.com
+    enabled: true
+    emailVerified: false
+    credentials:
+      - type: password
+        value: &lt;ch8ngeme&gt;
+    clientRoles:
+      automation-hub:
+        - hubadmin</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Create</b> and wait for the process to complete.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>When a user is created, the Operator creates a Secret containing both the username and password using the following naming pattern: <code>credential-&lt;realm name&gt;-&lt;username&gt;-&lt;namespace&gt;</code>.
+In this example the credential is called <code>credential-ansible-automation-platform-hub-admin-rh-sso</code>.
+When a user is created the Operator does not update the user&#8217;s password.
+Password changes are not reflected in the Secret.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-installing-the-ansible-platform-operator_using-a-rhsso-operator">7.5. Installing the Ansible Automation Platform Operator</h3>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to <span class="menuseq"><b class="menu">Operator</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Operator Hub</b></span> and search for the Ansible Automation Platform Operator.</p>
+</li>
+<li>
+<p>Select the Ansible Automation Platform Operator project.</p>
+</li>
+<li>
+<p>Click on the Operator tile.</p>
+</li>
+<li>
+<p>Click <b class="button">Install</b>.</p>
+</li>
+<li>
+<p>Select a Project to install the Operator into.
+Red Hat recommends using the Operator recommended Namespace name.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If you want to install the Operator into a project other than the recommended one, select <strong>Create Project</strong> from the drop down menu.</p>
+</li>
+<li>
+<p>Enter the Project name.</p>
+</li>
+<li>
+<p>Click <b class="button">Create</b>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Install</b>.</p>
+</li>
+<li>
+<p>When the Operator has been installed, click <b class="button">View Operator</b>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-creating-a-secret_using-a-rhsso-operator">7.6. Creating a Red Hat Single Sign-On connection secret</h3>
+<div class="paragraph">
+<p>Use this procedure to create a connection secret for Red Hat Single Sign-On.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to <code>https://&lt;sso_host&gt;/auth/realms/ansible-automation-platform</code>.</p>
+</li>
+<li>
+<p>Copy the <code>public_key</code> value.</p>
+</li>
+<li>
+<p>In the OpenShift Web UI, navigate to <span class="menuseq"><b class="menu">Workloads</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Secrets</b></span>.</p>
+</li>
+<li>
+<p>Select the <strong>ansible-automation-platform</strong> project.</p>
+</li>
+<li>
+<p>Click <b class="button">Create</b>, and select <b class="button">From YAML</b>.</p>
+</li>
+<li>
+<p>Edit the following YAML to create the secret</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">apiVersion: v1
+kind: Secret
+metadata:
+  name: automation-hub-sso                       <b class="conum">(1)</b>
+  namespace: ansible-automation-platform
+type: Opaque
+stringData:
+  keycloak_host: "keycloak-rh-sso.apps-crc.testing"
+  keycloak_port: "443"
+  keycloak_protocol: "https"
+  keycloak_realm: "ansible-automation-platform"
+  keycloak_admin_role: "hubadmin"
+  social_auth_keycloak_key: "automation-hub"
+  social_auth_keycloak_secret: "client-secret"   <b class="conum">(2)</b>
+  social_auth_keycloak_public_key: &gt;-            <b class="conum">(3)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>This name is used in the next step when creating the automation hub instance.</p>
+</li>
+<li>
+<p>If the secret was changed when creating the Keycloak client for automation hub be sure to change this value to match.</p>
+</li>
+<li>
+<p>Enter the value of the <code>public_key</code> copied in <a href="#proc-installing-the-ansible-platform-operator_using-a-rhsso-operator">Installing the Ansible Automation Platform Operator</a>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Create</b> and wait for the process to complete.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-installing-hub-using-operator_using-a-rhsso-operator">7.7. Installing automation hub using the Ansible Automation Platform Operator</h3>
+<div class="paragraph">
+<p>Use the following procedure to install automation hub using the Ansible Automation Platform Operator.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to <span class="menuseq"><b class="menu">Operator</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Installed Operators</b></span>.</p>
+</li>
+<li>
+<p>Select the Ansible Automation Platform.</p>
+</li>
+<li>
+<p>Select the Automation hub tab and click <b class="button">Create Automation hub</b>.</p>
+</li>
+<li>
+<p>Select <b class="button">YAML view</b>.
+The YAML should be similar to:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">apiVersion: automationhub.ansible.com/v1beta1
+kind: AutomationHub
+metadata:
+  name: private-ah                              <b class="conum">(1)</b>
+  namespace: aap
+spec:
+  sso_secret: automation-hub-sso                <b class="conum">(2)</b>
+  pulp_settings:
+    verify_ssl: false
+  route_tls_termination_mechanism: Edge
+  ingress_type: Route
+  loadbalancer_port: 80
+  file_storage_size: 100Gi
+  image_pull_policy: IfNotPresent
+  replicas: 1                                   <b class="conum">(3)</b>
+  web_replicas: N
+  task_replicas: N
+  file_storage_access_mode: ReadWriteMany
+  content:
+    log_level: INFO
+    replicas: 2
+  postgres_storage_requirements:
+    limits:
+      storage: 50Gi
+    requests:
+      storage: 8Gi
+  api:
+    log_level: INFO
+    replicas: 1
+  postgres_resource_requirements:
+    limits:
+      cpu: 1000m
+      memory: 8Gi
+    requests:
+      cpu: 500m
+      memory: 2Gi
+  loadbalancer_protocol: http
+  resource_manager:
+    replicas: 1
+  worker:
+    replicas: 2</pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Set metadata.name to the name to use for the instance.</p>
+</li>
+<li>
+<p>Set spec.sso_secret to the name of the secret created in <a href="#proc-creating-a-secret_using-a-rhsso-operator">Creating a Secret to hold the Red Hat Single Sign On connection details</a>.</p>
+</li>
+<li>
+<p>Scale replicas up or down for each deployment by using the <code>web_replicas</code> or <code>task_replicas</code> respectively, where N represents the number of replicas you want to create. Alternatively, you can scale all pods across both deployments by using <code>replicas</code>. See <a href="https://ansible.readthedocs.io/projects/awx-operator/en/latest/user-guide/advanced-configuration/scaling-the-web-and-task-pods-independently.html">Scaling the Web and Task Pods independently</a> for details.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This YAML turns off SSL verification (<code>ssl_verify: false</code>).
+If you are not using self-signed certificates for OpenShift this setting can be removed.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Create</b> and wait for the process to complete.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-determine-hub-route_using-a-rhsso-operator">7.8. Determining the automation hub Route</h3>
+<div class="paragraph">
+<p>Use the following procedure to determine the hub route.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to <span class="menuseq"><b class="menu">Networking</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Routes</b></span>.</p>
+</li>
+<li>
+<p>Select the project you used for the install.</p>
+</li>
+<li>
+<p>Copy the location of the <code>private-ah-web-svc</code> service.
+The name of the service is different if you used a different name when creating the automation hub instance.
+This is used later to update the Red Hat Single Sign-On client.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-update-rhsso-client_using-a-rhsso-operator">7.9. Updating the Red Hat Single Sign-On client</h3>
+<div class="paragraph">
+<p>After you install automation hub and you know the URL of the instance, you must update the Red Hat Single Sign-On to set the Valid Redirect URIs and Web Origins settings.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to <span class="menuseq"><b class="menu">Operator</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Installed Operators</b></span>.</p>
+</li>
+<li>
+<p>Select the RH-SSO project.</p>
+</li>
+<li>
+<p>Click <b class="button">Red Hat Single Sign-On Operator</b>.</p>
+</li>
+<li>
+<p>Select <b class="button">Keycloak Client</b>.</p>
+</li>
+<li>
+<p>Click on the automation-hub-client-secret client.</p>
+</li>
+<li>
+<p>Select <b class="button">YAML</b>.</p>
+</li>
+<li>
+<p>Update the Client YAML to add the Valid Redirect URIs and Web Origins settings.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">redirectUris:
+  - 'https://private-ah-ansible-automation-platform.apps-crc.testing/*'
+webOrigins:
+  - 'https://private-ah-ansible-automation-platform.apps-crc.testing'</pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Field</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Description</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>redirectURIs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is the location determined in <a href="#proc-determine-hub-route_using-a-rhsso-operator">Determine Automation Hub Route</a>.
+Be sure to add the /* to the end of the <code>redirectUris</code> setting.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>webOrigins</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is the location determined in <a href="#proc-determine-hub-route_using-a-rhsso-operator">Determine Automation Hub Route</a>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Ensure the indentation is correct when entering these settings.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Save</b>.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">To verify connectivity</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the automation hub route.</p>
+</li>
+<li>
+<p>Enter the <code>hub_admin</code> user credentials and sign in.</p>
+</li>
+<li>
+<p>Red Hat Single Sign-On processes the authentication and redirects back to automation hub.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_additional_resources_4">7.10. Additional resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>For more information on running operators on OpenShift Container Platform, see <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html/operators/index">Working with Operators in OpenShift Container Platform</a> in the OpenShift Container Platform product documentation.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="operator-add-execution-nodes_operator-platform-doc">8. Adding execution nodes to Ansible Automation Platform Operator</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can enable the Ansible Automation Platform Operator with execution nodes by downloading and installing the install bundle.</p>
+</div>
+<div id="add-operator-execution-nodes_operator-upgrade" class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>An automation controller instance.</p>
+</li>
+<li>
+<p>The receptor collection package is installed.</p>
+</li>
+<li>
+<p>The <code>ansible-runner</code> package is installed.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Log in to Red Hat Ansible Automation Platform.</p>
+</li>
+<li>
+<p>In the navigation panel, select <span class="menuseq"><b class="menu">Automation Execution</b>&#160;<b class="caret">&#8250;</b> <b class="submenu">Infrastructure</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Instances</b></span>.</p>
+</li>
+<li>
+<p>Click <b class="button">Add</b>.</p>
+</li>
+<li>
+<p>Input the VM name in the <strong>Host Name</strong> field.</p>
+</li>
+<li>
+<p>Optional: Input the port number in the <strong>Listener Port</strong> field.</p>
+</li>
+<li>
+<p>Click <b class="button">Save</b>.</p>
+</li>
+<li>
+<p>Click the download icon <span class="image"><img src="images/download.png" alt="download" width="15" height="15"></span>next to <strong>Install Bundle</strong>. This starts a download, take note of where you save the file</p>
+</li>
+<li>
+<p>Untar the gz file.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To run the <code>install_receptor.yml</code> playbook you need to install  the receptor collection from Ansible Galaxy:
+<code>Ansible-galaxy collection install -r requirements.txt</code></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Update the playbook with your user name and SSH private key file. Note that <code>ansible_host</code> pre-populates with the hostname you input earlier.</p>
+<div class="listingblock">
+<div class="content">
+<pre>all:
+   hosts:
+      remote-execution:
+	        ansible_host: example_host_name
+	        ansible_user: &lt;username&gt; #user provided
+	        Ansible_ssh_private_key_file: ~/.ssh/id_example</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open your terminal, and navigate to the directory where you saved the playbook.</p>
+</li>
+<li>
+<p>To install the bundle run:</p>
+<div class="listingblock">
+<div class="content">
+<pre>ansible-playbook install_receptor.yml -i inventory</pre>
+</div>
+</div>
+</li>
+<li>
+<p>When installed you can now upgrade your execution node by downloading and re-running the playbook for the instance you created.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Verification</div>
+<p>To verify if your playbook runs correctly on your new node run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>watch podman ps</pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p>For more information about managing instance groups see the <a href="https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/automation_controller_user_guide/controller-instance-groups">Managing Instance Groups</a> section of the Automation Controller User Guide.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="assembly-controller-resource-operator">9. Ansible Automation Platform Resource Operator</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="con-controller-resource-operator_performance-considerations">9.1. Resource Operator overview</h3>
+<div class="paragraph">
+<p>Resource Operator is a custom resource (CR) that you can deploy after you have created your platform gateway deployment.
+ With Resource Operator you can define projects, job templates, and inventories through the use of YAML files.
+ These YAML files are then used by automation controller to create these resources.
+ You can create the YAML through the <strong>Form view</strong> that prompts you for keys and values for your YAML code.
+ Alternatively, to work with YAML directly, you can select <strong>YAML view</strong>.</p>
+</div>
+<div class="paragraph">
+<p>There are currently two custom resources provided by the Resource Operator:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>AnsibleJob: launches a job in the automation controller instance specified in the Kubernetes secret (automation controller host URL, token).</p>
+</li>
+<li>
+<p>JobTemplate: creates a job template in the automation controller instance specified.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-use-controller-resource-operator_performance-considerations">9.2. Using Resource Operator</h3>
+<div class="paragraph">
+<p>The Resource Operator itself does not do anything until the user creates an object.
+As soon as the user creates an <strong>AutomationControllerProject</strong> or <strong>AnsibleJob</strong> resource, the Resource Operator will start processing that object.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Install the Kubernetes-based cluster of your choice.</p>
+</li>
+<li>
+<p>Deploy automation controller using the <code>automation-controller-operator</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>After installing the <code>automation-controller-resource-operator</code> in your cluster, you must create a Kubernetes (k8s) secret with the connection information for your automation controller instance.
+Then you can use Resource Operator to create a k8s resource to manage your automation controller instance.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-add-controller-access-token_performance-considerations">9.3. Connecting Resource Operator to platform gateway</h3>
+<div class="paragraph">
+<p>To connect Resource Operator with platform gateway you need to create a k8s secret with the connection information for your automation controller instance.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+You can only create OAuth 2 Tokens for your own user through the API or UI, which means you can only configure or view tokens from your own user profile.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Procedure</div>
+<p>To create an OAuth2 token for your user in the platform gateway UI:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the navigation panel, select <span class="menuseq"><b class="menu">Access Management</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Users</b></span>.</p>
+</li>
+<li>
+<p>Select the username you want to create a token for.</p>
+</li>
+<li>
+<p>Select <span class="menuseq"><b class="menu">Tokens</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Automation Execution</b></span></p>
+</li>
+<li>
+<p>Click <b class="button">Create Token</b>.</p>
+</li>
+<li>
+<p>You can leave <strong>Applications</strong> empty. Add a description and select <strong>Read</strong> or <strong>Write</strong> for the <strong>Scope</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Make sure you provide a valid user when creating tokens.
+Otherwise, you will get an error message that you tried to issue the command without specifying a user, or supplying a username that does not exist.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-create-connection-secret_performance-considerations">9.4. Creating a automation controller connection secret for Resource Operator</h3>
+<div class="paragraph">
+<p>To make your connection information available to the Resource Operator, create a k8s secret with the token and host value.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>The following is an example of the YAML for the connection secret.
+Save the following example to a file, for example, <code>automation-controller-connection-secret.yml</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: v1
+kind: Secret
+metadata:
+  name: controller-access
+  type: Opaque
+stringData:
+  token: &lt;generated-token&gt;
+  host: https://my-controller-host.example.com/</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Edit the file with your host and token value.</p>
+</li>
+<li>
+<p>Apply it to your cluster by running the <code>kubectl create</code> command:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl create -f controller-connection-secret.yml</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-create-an-ansiblejob_performance-considerations">9.5. Creating an AnsibleJob</h3>
+<div class="paragraph">
+<p>Launch an automation job on automation controller by creating an AnsibleJob resource.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Specify the connection secret and job template you want to launch.</p>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: tower.ansible.com/v1alpha1
+kind: AnsibleJob
+metadata:
+  generateName: demo-job-1 # generate a unique suffix per 'kubectl create'
+spec:
+  connection_secret: controller-access
+  job_template_name: Demo Job Template</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure features such as, inventory, extra variables, and time to live for the job.</p>
+<div class="listingblock">
+<div class="content">
+<pre>spec:
+  connection_secret: controller-access
+  job_template_name: Demo Job Template
+  inventory: Demo Inventory                    # Inventory prompt on launch needs to be enabled
+  runner_image: quay.io/ansible/controller-resource-runner
+  runner_version: latest
+  job_ttl: 100
+  extra_vars:                                  # Extra variables prompt on launch needs to be enabled
+     test_var: test
+  job_tags: "provision,install,configuration"  # Specify tags to run
+  skip_tags: "configuration,restart"           # Skip tasks with a given tag</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You must enable  prompt on launch for inventories and extra variables if you are configuring those. To enable <strong>Prompt on launch</strong>, within the automation controller UI:
+From the <span class="menuseq"><b class="menu">Resources</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Templates</b></span> page, select your template and select the <strong>Prompt on launch</strong> checkbox next to <strong>Inventory</strong> and <strong>Variables</strong> sections.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Launch a workflow job template with an AnsibleJob object by specifying the <code>workflow_template_name</code> instead of <code>job_template_name</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: tower.ansible.com/v1alpha1
+kind: AnsibleJob
+metadata:
+  generateName: demo-job-1 # generate a unique suffix per 'kubectl create'
+spec:
+  connection_secret: controller-access
+  workflow_template_name: Demo Workflow Template</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-create-a-jobtemplate_performance-considerations">9.6. Creating a JobTemplate</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a job template on automation controller by creating a JobTemplate resource:</p>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: tower.ansible.com/v1alpha1
+kind: JobTemplate
+metadata:
+  name: jobtemplate-4
+spec:
+  connection_secret: controller-access
+  job_template_name: ExampleJobTemplate4
+  job_template_project: Demo Project
+  job_template_playbook: hello_world.yml
+  job_template_inventory: Demo Inventory</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2024-07-31 10:25:34 +0100
+</div>
+</div>
+</body>
+</html>
